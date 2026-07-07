@@ -28,7 +28,7 @@ export class MetabaseClient {
       headers: {
         "Content-Type": "application/json",
       },
-      timeout: 30000, // 30 second timeout to prevent hanging requests
+      timeout: 120000, // 2 minute timeout: card/dashboard PUTs can exceed 30s (Metabase recomputes result_metadata on save, and large dashboards carry all dashcards in one payload)
     });
 
     if (config.apiKey) {
