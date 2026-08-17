@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CognitionAI/metabase-mcp-server.git"
+    "url": "git+https://github.com/CognitionAI/metabase-mcp-server.git"
   },
   "publishConfig": {
     "access": "public"
@@ -28,7 +28,7 @@
   "type": "module",
   "main": "./dist/server.js",
   "bin": {
-    "metabase-mcp-server": "./dist/server.js"
+    "metabase-mcp-server": "dist/server.js"
   },
   "files": [
     "dist",
@@ -36,7 +36,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/server.js', '755')\" && mkdir -p dist && cp -r build/* dist/",
+    "build": "npm run clean && tsc && node -e \"require('fs').chmodSync('build/server.js', '755')\" && mkdir -p dist && cp -r build/. dist/",
+    "prepack": "npm run build",
     "watch": "tsc --watch",
     "inspector": "npm run build && npx fastmcp inspect dist/server.js",
     "start": "npm run build && node dist/server.js",
@@ -52,7 +53,8 @@
     "axios": "^1.8.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "fastmcp": "^3.14.5"
+    "fastmcp": "3.23.1",
+    "mcp-proxy": "5.11.2"
   },
   "devDependencies": {
     "@types/node": "^20.17.22",

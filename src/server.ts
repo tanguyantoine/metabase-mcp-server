@@ -23,7 +23,7 @@ const metabaseClient = new MetabaseClient(config);
 // Create FastMCP server
 const server = new FastMCP({
   name: "metabase-server",
-  version: "2.0.1",
+  version: "2.2.0",
 });
 
 // Override addTool to apply filtering
